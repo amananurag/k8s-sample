@@ -1,22 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mongo-express-Deployment
+  name: mongo-express
   labels:
-    app: demo
-    type: backend
+    app: mongo-express
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: demo
-      type: backend
+        app: mongo-express
   template:
       metadata:
         name: mongo-express
         labels:
-          app: demo
-          type: backend
+            app: mongo-express
       spec:
         containers:
           - name: mongo-express
@@ -24,15 +21,15 @@ spec:
             ports:
               - containerPort: 8081
             env:
-              - name: ME_CONFIG_MONGODB_AUTH_USERNAME 
+              - name: ME_CONFIG_MONGODB_ADMINUSERNAME 
                 valueFrom:
                   secretKeyRef:
                     name: mongo-secret
-                    key: ME_CONFIG_MONGODB_AUTH_USERNAME
-              - name: ME_CONFIG_MONGODB_AUTH_PASSWORD 
+                    key: MONGO_INITDB_ROOT_USERNAME
+              - name: ME_CONFIG_MONGODB_ADMINPASSWORD 
                 valueFrom:
                   secretKeyRef:
                     name: mongo-secret
-                    key: ME_CONFIG_MONGODB_AUTH_USERNAME
-              - name: ME_CONFIG_MONGODB_AUTH_DATABASE 
-                value: mongo-Service
+                    key: MONGO_INITDB_ROOT_PASSWORD
+              - name: ME_CONFIG_MONGODB_SERVER 
+                value: mongo-service

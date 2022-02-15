@@ -3,8 +3,7 @@ kind: Pod
 metadata:
   name: mongo-express
   labels:
-    app: demo
-    type: backend
+    app: mongo-express
 spec:
   containers:
     - name: mongo-express

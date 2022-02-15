@@ -3,8 +3,7 @@ kind: Pod
 metadata:
   name: mongodb
   labels:
-    app: demo
-    type: backend
+    app: mongodb
 spec:
   containers:
     - name: mongodb
